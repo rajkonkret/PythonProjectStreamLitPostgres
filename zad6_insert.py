@@ -55,5 +55,34 @@ product = cur.fetchone()
 
 print(product)
 
+# do dynamicznego budowania identyfikatorów
+from psycopg import sql
+
+column = "price"
+
+query = sql.SQL("""
+SELECT {}
+FROM products
+""").format(sql.Identifier(column))
+
+dane = cur.execute(query)
+print(dane)
+
+# executemany() - wiele danych na raz
+kolekcja = [
+    ("Laptop", 3999.99, 5),
+    ("Laptop", 3999.99, 5),
+    ("Laptop", 3999.99, 5),
+]
+
+cur.executemany(
+    """
+    INSERT INTO products (name, price, quantity)
+    VALUES (%s, %s, %s)
+    """,
+    kolekcja
+)
+
+# cursor.copy() - masowe tworzeni tabel i danych w bazie
 conn.commit()
 conn.close()
