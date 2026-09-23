@@ -84,5 +84,14 @@ cur.executemany(
 )
 
 # cursor.copy() - masowe tworzeni tabel i danych w bazie
+
+# fetchall()
+query = sql.SQL("""
+SELECT {}
+FROM products
+""").format(sql.Identifier(column))
+
+for row in cur.execute(query):
+    print(row)
 conn.commit()
 conn.close()
