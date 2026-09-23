@@ -11,3 +11,9 @@ conn = psycopg.connect(DATABASE_URL)
 with conn.cursor() as cur:
     cur.execute("SELECT version()")
     print(cur.fetchone())
+
+# bardziej eleganckie
+with psycopg.connect(DATABASE_URL)  as conn:
+    with conn.cursor() as cur:
+        cur.execute("SELECT version()")
+        print(cur.fetchone())
