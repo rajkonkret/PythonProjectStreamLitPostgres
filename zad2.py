@@ -10,7 +10,11 @@ conn = psycopg.connect(DATABASE_URL)
 
 cur = conn.cursor()
 
+cur.execute(
+    "SELECT version()"
+)
 
+print(cur.fetchone())
 
 cur.close()
 conn.close()
