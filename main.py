@@ -15,3 +15,6 @@ if __name__ == '__main__':
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 # wheel, theme
+#  python .\main.py
+# https://peps.python.org/pep-0008/
+# ctr alt l - formatowanie kodu
