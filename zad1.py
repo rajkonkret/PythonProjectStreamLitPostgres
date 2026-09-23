@@ -21,3 +21,4 @@ conn = psycopg.connect(
 )
 
 
+conn.close()
