@@ -6,15 +6,18 @@ load_dotenv()
 
 DATABASE_URL = os.environ["DATABASE_URL"]
 
-conn = psycopg.connect(DATABASE_URL)
+try:
+    conn = psycopg.connect(DATABASE_URL)
 
-cur = conn.cursor()
+    cur = conn.cursor()
 
-cur.execute(
-    "SELECT version()"
-)
+    cur.execute(
+        "SELECT version()"
+    )
 
-print(cur.fetchone())
-
-cur.close()
-conn.close()
+    print(cur.fetchone())
+except Exception as e:
+    print(e)
+finally:
+    cur.close()
+    conn.close()
